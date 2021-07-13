@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Requests\Api\Auth;
+namespace App\Http\Requests\Api\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,7 +13,7 @@ class RegisterRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -31,7 +31,7 @@ class RegisterRequest extends FormRequest
             'city' => 'max:55',
             'phone' => 'min:11|numeric',
             'birthday' => 'date_format:Y-m-d',
-            'password' => 'required|confirmed'
+            'password' => 'required'
         ];
     }
 }
