@@ -5,44 +5,28 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\UpdateRequest;
-use App\Http\Requests\Api\UpdateuserRequest;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Repositories\EloquentUsers;
 
 class UserController extends Controller
 {
     /**
+     * @param EloquentUsers $users
      * @return \Illuminate\Http\JsonResponse
      */
     //показываем всем пользователей
-    public function show()
+    public function show(EloquentUsers $users)
     {
-        $user = Auth::user();
-        return response()->json(['Информация о пользователе' => $user]);
+        return response()->json($users->getAuthUser());
     }
 
     /**
-     * @param Request $request
+     * @param EloquentUsers $user
+     * @param UpdateRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    //обновляем данные юзера
-    public function update(UpdateRequest $request)
+    //Показываем обновленые данные юзера
+    public function update(EloquentUsers $user, UpdateRequest $request)
     {
-        $user = Auth::user();
-        $input = $request->all();
-
-        $user->name = $input['show_name'];
-        $user->image = $input['image'];
-        $user->about = $input['about'];
-        $user->github = $input['github'];
-        $user->city = $input['city'];
-        $user->is_finished = true;
-        $user->telegram = $input['telegram'];
-        $user->phone = $input['phone'];
-        $user->birthday = $input['birthday'];
-        $user->save();
-
-        return response()->json(['Информация о пользователе' => $user]);
+        return response()->json($user->updateAuthUser($request));
     }
 }
