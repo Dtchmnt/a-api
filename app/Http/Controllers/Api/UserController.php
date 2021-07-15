@@ -4,6 +4,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\UpdateRequest;
+use App\Http\Requests\Api\UpdateuserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,12 +27,13 @@ class UserController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     //обновляем данные юзера
-    public function update(Request $request)
+    public function update(UpdateRequest $request)
     {
         $user = Auth::user();
         $input = $request->all();
 
         $user->name = $input['show_name'];
+        $user->image = $input['image'];
         $user->about = $input['about'];
         $user->github = $input['github'];
         $user->city = $input['city'];
