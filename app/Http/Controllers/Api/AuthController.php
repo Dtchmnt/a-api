@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Auth\LoginRequest;
 use App\Http\Requests\Api\Auth\RegisterRequest;
+use App\Http\Requests\Api\SendRequest;
 use App\Models\Restore;
 use App\Models\User;
 use Carbon\Carbon;
@@ -74,7 +75,7 @@ class AuthController extends Controller
         return response()->json(['token' => $accessToken, 'user' => $user,]);
     }
 
-    public function restore(Request $request)
+    public function restore(SendRequest $request)
     {
         //Реквест только почту
         $email = $request->only('email');
