@@ -26,7 +26,7 @@ class RegisterRequest extends FormRequest
         return [
             'name' => 'required|max:55',
             'email' => 'email|required',
-            'type' => 'required|in:backend, frontend',
+            'type' => 'required',
             'github' => 'max:75',
             'city' => 'max:55',
             'phone' => 'min:11|numeric',
