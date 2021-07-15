@@ -31,7 +31,7 @@ class RegisterController extends Controller
             'type' => $request['type'],
             'github' => $request['github'],
             'city' => $request['city'],
-            'is_finished' => '1',
+            'is_finished' => true,
             'phone' => $request['phone'],
             'birthday' => $request['birthday'],
             'password' => $request['password'] = bcrypt($request->password),

@@ -17,6 +17,29 @@ class UserController extends Controller
     public function show()
     {
         $user = Auth::user();
-        return response()->json(['success' => $user]);
+        return response()->json(['Информация о пользователе' => $user]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    //обновляем данные юзера
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+        $input = $request->all();
+
+        $user->name = $input['show_name'];
+        $user->about = $input['about'];
+        $user->github = $input['github'];
+        $user->city = $input['city'];
+        $user->is_finished = true;
+        $user->telegram = $input['telegram'];
+        $user->phone = $input['phone'];
+        $user->birthday = $input['birthday'];
+        $user->save();
+
+        return response()->json(['Информация о пользователе' => $user]);
     }
 }
