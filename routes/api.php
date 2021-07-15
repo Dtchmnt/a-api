@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [App\Http\Controllers\Api\AuthController::class, 'register'])->name('register');
 Route::post('/login', [App\Http\Controllers\Api\AuthController::class, 'login'])->name('login');
+Route::post('/restore', [App\Http\Controllers\Api\AuthController::class, 'restore'])->name('restore');
 
 
 Route::middleware('auth:api')->group(function () {
