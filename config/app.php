@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
+        App\Providers\PermissionServiceProvider::class,
 
         /*
          * Package Service Providers...

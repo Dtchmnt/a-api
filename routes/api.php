@@ -28,3 +28,9 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/user', [App\Http\Controllers\Api\UserController::class, 'show'])->name('show');
     Route::post('/user', [App\Http\Controllers\Api\UserController::class, 'update'])->name('update');
 });
+
+//Тестовый роут на проверку прав
+
+Route::group(['middleware' => ['auth:api','role:admin']], function() {
+    Route::get('/users', [App\Http\Controllers\Api\UserController::class, 'show'])->name('show');
+});
