@@ -31,6 +31,6 @@ Route::middleware('auth:api')->group(function () {
 
 //Тестовый роут на проверку прав
 
-Route::group(['middleware' => ['auth:api','role:admin']], function() {
-    Route::get('/users', [App\Http\Controllers\Api\UserController::class, 'show'])->name('show');
-});
+//Route::group(['middleware' => ['auth:api','role:admin']], function() {
+//    Route::get('/users', [App\Http\Controllers\Api\UserController::class, 'show'])->name('show');
+//});

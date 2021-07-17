@@ -28,7 +28,8 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();;
             $table->string('birthday')->nullable();;
             $table->string('password');
-            $table->string('telegram')->nullable();;
+            $table->string('telegram')->nullable();
+            $table->unsignedBigInteger('position_id')->nullable();;
             $table->rememberToken();
             $table->timestamps();
         });
