@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
 class DepartmentsController extends Controller
@@ -10,7 +11,8 @@ class DepartmentsController extends Controller
     public function getDepartments(Request $request) {
         $user = $request->user();
         if ($user->hasRole('user')) {
-            return response()->json('user');
+            $departments = Department::all();
+            return response(['departments' => $departments],200);
         }
         if ($user->hasRole('worker')) {
             return response()->json('worker');
