@@ -27,6 +27,7 @@ Route::post('/restore/confirm', [App\Http\Controllers\Api\AuthController::class,
 Route::middleware('auth:api')->group(function () {
     Route::get('/user', [App\Http\Controllers\Api\UserController::class, 'show'])->name('show');
     Route::post('/user', [App\Http\Controllers\Api\UserController::class, 'update'])->name('update');
+    Route::get('/departments', [App\Http\Controllers\Api\DepartmentsController::class, 'getDepartments'])->name('getDepartments');
 });
 
 //Тестовый роут на проверку прав
