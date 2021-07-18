@@ -54,6 +54,10 @@ class EloquentUsers implements UsersRepository
         return $user;
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response|mixed
+     */
     public function getDepartments(Request $request)
     {
         //Делаем запрос
@@ -86,6 +90,54 @@ class EloquentUsers implements UsersRepository
             return response(['list of positions and departments' => $position], 200);
         }
         //Если вдруг что то пошло не по плану)
-        return response()->json('Что то пошло не так',400);
+        return response()->json('Что то пошло не так', 400);
+    }
+
+    /**
+     * @param Request $req
+     * @param int $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     */
+    public function getById(Request $request, int $id)
+    {
+        //Делаем запрос юзера
+        $user = $request->user();
+//Ищем юзера по id
+        $worker = $this->model->findOrFail($id);
+        //Если я админ то получаю все юзеров по ид
+        if ($user->hasRole('admin')) {
+            //выводим юзера
+            return response()->json([
+                'worker' => [
+                    $worker
+                ]
+            ], 200);
+        }
+        //Если я воркер то получаю все юзеров по ид своего отдела
+        if ($user->hasRole('user', 'worker')
+            && $user->position == null
+            || $worker->position == null
+            || $worker->position->department->id
+            != $user->position->department->id) {
+            //выводим доступ запрещен
+            return response()->json([
+                'errors' => [
+                    'message' => [
+                        'Доступ запрещен'
+                    ]
+                ]
+            ], 400);
+        }
+//статус 200
+        return response()->json([
+            'worker' => [
+                $worker
+            ]
+        ], 200);
+    }
+
+    public function getUserCard()
+    {
+        
     }
 }

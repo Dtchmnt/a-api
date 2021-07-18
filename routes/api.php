@@ -28,6 +28,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/user', [App\Http\Controllers\Api\UserController::class, 'show'])->name('show');
     Route::post('/user', [App\Http\Controllers\Api\UserController::class, 'update'])->name('update');
     Route::get('/departments', [App\Http\Controllers\Api\DepartmentsController::class, 'getDepartments'])->name('getDepartments');
+    Route::get('/worker/{id}', [App\Http\Controllers\Api\WorkersController::class, 'getById'])->name('getById');
 });
 
 //Тестовый роут на проверку прав
