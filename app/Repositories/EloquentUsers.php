@@ -94,7 +94,7 @@ class EloquentUsers implements UsersRepository
     }
 
     /**
-     * @param Request $req
+     * @param Request $request
      * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
@@ -138,6 +138,6 @@ class EloquentUsers implements UsersRepository
 
     public function getUserCard()
     {
-        
+
     }
 }

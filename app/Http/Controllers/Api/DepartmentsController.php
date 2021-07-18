@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Department;
-use App\Models\Position;
 use App\Repositories\EloquentUsers;
 use Illuminate\Http\Request;
 
